@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll= long long;
+long long dp[105][105][105];
+int main(){
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int a,b,c;
+        cin>>a;
+        vector<int>v1(a);
+        for(int &x:v1) cin>>x;
+        cin>>b;
+        vector<int>v2(b);
+        for(int &x:v2) cin>>x;
+        cin>>c;
+        vector<int>v3(c);
+        for(int &x:v3) cin>>x;
+        memset(dp,0,sizeof(dp));
+        for(int i=1;i<=a;i++)
+        {
+            for(int j=1;j<=b;j++)
+            {
+                for(int h=1;h<=c;h++)
+                {
+                    if(v1[i-1]==v2[j-1]&&v2[j-1]==v3[h-1])
+                    {
+                        dp[i][j][h]=dp[i-1][j-1][h-1]+1;
+                    }else
+                    {
+                        dp[i][j][h]=max({dp[i-1][j][h],dp[i][j-1][h],dp[i][j][h-1]});
+                    }
+                }
+            }
+        }
+        cout<<dp[a][b][c]<<endl;
+    }
+}
