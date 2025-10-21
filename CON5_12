@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int mod=1e9+7;
+long long p(long long n, long long k)
+{
+    long long ans=1;
+    for(long long i=0;i<k;i++)
+    {
+        ans=(ans*(n-i))%mod;
+    }
+    return ans;
+}
+int main(){
+    int q;
+    cin>>q;
+    while(q--)
+    {
+       long long n,k;
+       cin>>n>>k;
+       cout<<p(n,k)<<endl;
+    }
+}
