@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    int q;
+    cin >> q;
+    while(q--) {
+        long long n;
+        cin >> n;
+        long long a=0, b=1, sum=0;
+        while(a <= n) {
+            if(a % 2 == 0) sum += a; // chỉ cộng Fibonacci chẵn
+            long long c = a + b;
+            a = b;
+            b = c;
+        }
+        cout << sum << endl;
+    }
+}
