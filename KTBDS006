@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int mod=1e9+7;
+int dp[1005][1005][20];//số cách dùng i nguyen to , tổng j k số
+bool checknt(long long n)
+{
+    if(n<2) return 0;
+    for(int i=2;i<=sqrt(n);i++)
+    {
+        if(n%i==0)
+            return 0;
+    }
+    return 1;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+    int n,k;
+    cin>>n>>k;
+    memset(dp, 0, sizeof(dp));
+    dp[0][0][0] = 1; // base case
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=n;j>=0;j--)
+        {
+           for(int h=0;h<=k;h++)
+           {
+               dp[i][j][h]=dp[i-1][j][h];
+               if(checknt(i)&&j>=i)
+               {
+                   dp[i][j][h]+=dp[i-1][j-i][h-1];
+               }
+           }
+        }
+    }
+    cout<<dp[n][n][k]<<endl;
+}
+}
