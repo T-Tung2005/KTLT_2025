@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define MOD 1000000007
+struct matran{
+    ll X[50][50];
+    int n;
+    friend matran operator * (matran a, matran b){
+        matran c;
+        c.n=a.n;//cỡ ma trận c bằng ma trận a hoặc b
+        for(int i = 0; i < a.n; i++){
+            for(int j = 0; j < a.n; j++){
+                c.X[i][j] = 0;
+                for(int k = 0; k < a.n; k++){
+                    c.X[i][j] += a.X[i][k] * b.X[k][j];
+                    c.X[i][j] %= MOD;
+                }
+            }
+        }
+        return c;
+    }
+};
+matran binpow(matran a, ll n){
+    if(n == 1){
+        return a;
+    }
+    matran tmp = binpow(a, n / 2);
+    if(n % 2 == 1){
+        return tmp * tmp * a;
+    }
+    else{
+        return tmp * tmp;
+    }
+}
+int main(){
+    int q;
+    cin>>q;
+    while(q--)
+    {
+    long long n,k;
+    cin>>n>>k;
+    matran a;
+    a.n=n;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cin>>a.X[i][j];
+        }
+    }
+    matran kq=binpow(a,k);
+    ll tong=0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(i==j)
+            {
+                tong=(tong+kq.X[i][j])%MOD;
+            }
+        }
+    }
+    cout<<tong<<endl;
+   }
+}
