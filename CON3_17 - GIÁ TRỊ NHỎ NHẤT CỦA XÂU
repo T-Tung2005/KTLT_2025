@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int mod=1e9+7;
+int main(){
+   int q;
+   cin>>q;
+   while(q--)
+   {
+       int k;
+       cin>>k;
+       string s;
+       cin>>s;
+       int dem[256]={0};
+       for(char x :s)
+       {
+           dem[x]++;
+       }
+       priority_queue<int>pq;
+       for(int i=0;i<256;i++)
+       {
+           if(dem[i]>0)
+           {
+               pq.push(dem[i]);
+           }
+       }
+       while(k--&&!pq.empty())
+       {
+           int top=pq.top();pq.pop();
+           if(top>1) pq.push(top-1);
+       }
+       long long tong=0;
+       while(!pq.empty())
+       {
+           long long x=pq.top();pq.pop();
+           tong+=x*x;
+       }
+       cout<<tong<<endl;
+   }
+}
