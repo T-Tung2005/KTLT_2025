@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+int a[100][100];
+int dp[105][105];
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+    int n,m;
+    cin>>n>>m;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=m;j++)
+        {
+            cin>>a[i][j];
+            dp[i][j]=1e9;
+        }
+    }
+    int x,y;
+    cin>>x>>y;
+    dp[x][y]=a[x][y];
+    for(int j=y+1;j<=m;j++)
+    {
+        for(int i=1;i<=n;i++)
+        {
+            int truoc=dp[i][j-1];
+            if(i>1) truoc=min(truoc,dp[i-1][j-1]);
+            if(i<n) truoc=min(truoc,dp[i+1][j-1]);
+            if(truoc<1e9) dp[i][j]=truoc+a[i][j];
+        }
+    }
+    int tmp=1e9;
+    for(int i=1;i<=n;i++)
+    {
+        tmp=min(tmp,dp[i][m]);
+    }
+    cout<<tmp<<endl;
+    }
+}
