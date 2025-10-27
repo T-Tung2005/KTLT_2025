@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+string doicho(string s, int k)
+{
+    int n=s.size();
+    int i=0;
+    while(i<n&&k>0)
+    {
+        char chu=s[i];
+        int j=i;
+        while(j<n)
+        {
+            if(s[j]>chu)
+            {
+                chu=s[j];
+            }
+            j++;
+        }
+        if(s[i]!=chu)
+        {
+            int h=n-1;
+            while(h>i)
+            {
+                if(s[h]==chu)
+                {
+                    swap(s[i],s[h]);
+                    h--;
+                    break;
+                }
+                h--;
+            }
+        }
+        i++;
+    }
+    return s;
+}
+int main()
+{
+   int q;
+   cin>>q;
+   while(q--)
+   {
+       int k;
+       string s;
+       cin>>k>>s;
+       cout<<doicho(s,k)<<endl;
+   }
+}
