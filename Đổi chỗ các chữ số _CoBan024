@@ -24,7 +24,7 @@ string doicho(string s, int k)
                 if(s[h]==chu)
                 {
                     swap(s[i],s[h]);
-                    h--;
+                    k--;
                     break;
                 }
                 h--;
