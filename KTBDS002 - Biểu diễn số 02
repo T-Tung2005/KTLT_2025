@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+long long C(long long n, long long k)
+{
+    if(k>n) return 0;
+    if(k>n-k) k=n-k;
+    long long res=1;
+    for(int i=1;i<=k;i++)
+    {
+        res=res*(n-k+i)/i;
+    }
+    return res;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+     int n,k;
+     cin>>n>>k;
+     cout<<C(n+k-1,k-1)<<endl;
+    }
+}
