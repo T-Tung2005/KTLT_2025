@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+string thaydoi(string th)
+{
+    string k = th;
+    if(k[0]=='?')
+    {
+        if(k[1]=='?' ||k[1]<=3 ) k[0]='2';
+        else k[0]='1';
+    }
+    if(k[1]=='?')
+    {
+        if(k[0]=='2') k[1]='3';
+        else k[1]='9';
+    }
+    if(k[3]=='?') k[3]='5';
+    if(k[4]=='?') k[4]='9';
+    return k;
+}
+int main()
+{
+   int q;
+   cin>>q;
+   cin.ignore();
+   while(q--)
+   {
+       string s;
+       getline(cin,s);
+       stringstream ss(s);
+       string tmp;
+       vector<string>v;
+       while(getline(ss,tmp,'"'))
+       {
+          v.push_back(tmp);
+       }
+      cout<<'"'<<thaydoi(v[v.size()-1])<<'"'<<endl;
+   }
+}
