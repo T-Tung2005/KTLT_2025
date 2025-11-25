@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int>v;
+void fibo(long long n)
+{
+    int f1,f2,fn;
+    f1=0;f2=1;
+    v.push_back(0);
+    v.push_back(1);
+    for(int i=2;i<=n;i++)
+    {
+        fn=f1+f2;
+        if(fn>n) break;
+        v.push_back(fn);
+        f1=f2;
+        f2=fn;
+    }
+}
+int main() {
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        long long n;
+        cin>>n;
+        fibo(n);
+        bool check=true;
+        for(int i=0;i<v.size()&&check==true;i++)
+        {
+            for(int j=i+1;j<v.size();j++)
+            {
+                if(v[i]+v[j]==n)
+                {
+                    cout<<v[i]<<" "<<v[j]<<endl;
+                    check=false;
+                    break;
+                }
+            }
+        }
+        if(check==true) cout<<"-1"<<endl;
+    }
+}
