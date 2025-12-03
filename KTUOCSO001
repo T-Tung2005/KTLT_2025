@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long tonguoc(long long n)
+{
+    if(n==1) return 0;
+    int tong=1;
+    for(int i=2;i<=sqrt(n);i++)
+    {
+        if(n%i==0)
+        {
+            tong+=i;
+            if(i!=n/i)
+                tong+=n/i;
+        }
+    }
+    return tong;
+}
+int main()
+{
+   int q;
+   cin>>q;
+   while(q--)
+   {
+       long long n;
+       cin>>n;
+       cout<<tonguoc(n)<<endl;
+   }
+}
