@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n;
+int a[100];
+int x[100];
+vector<vector<int>>v;
+using ll= long long;
+void try1(int index , int tich , vector<int>tmp )
+{
+    for(int j=index;j<n;j++)
+    {
+        if(n%j!=0) continue;
+        if(1ll*tich*j>n) break;
+        tich*=j;
+        tmp.push_back(j);
+        if(tich==n)
+        {
+            v.push_back(tmp);
+        }else if(tich<n)
+        {
+            try1(j,tich,tmp);
+        }
+        tich/=j;
+        tmp.pop_back();
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        cin>>n;
+        v.clear();
+        vector<int>h;
+        try1(2,1,h);
+        cout<<v.size()<<endl;
+        for(auto x : v)
+        {
+            for(auto y:x)
+            {
+                cout<<y<<" ";
+            }
+            cout<<endl;
+        }
+    }
+}
