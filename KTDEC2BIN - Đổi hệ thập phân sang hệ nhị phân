@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+string check(long long n)
+{
+    if(n==0) return "0";
+    string res="";
+    while(n!=0)
+    {
+        res+=char((n%2)+'0');
+        n/=2;
+    }
+    reverse(res.begin(),res.end());
+    return res;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        long long n;
+        cin>>n;
+        cout<<check(n)<<endl;
+    }
+}
