@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool checkdacbiet(char c)
+{
+    return !isalnum(c); // mọi ký tự không phải chữ và số
+}
+bool check(string &s)
+{
+    if(s.size() < 8) return false;
+
+    bool hoa=0, thuong=0, so=0, sodb=0;
+    for(int i=0; i<s.size(); i++)
+    {
+        char c = s[i];
+        if(checkdacbiet(c)) sodb = 1;
+        else if(isupper(c)) hoa = 1;
+        else if(islower(c)) thuong = 1;
+        else if(isdigit(c)) so = 1;
+
+        if(i>0 && s[i]==s[i-1]) return false; // không được 2 ký tự giống liền nhau
+    }
+    return hoa && thuong && so && sodb;
+}
+
+int main()
+{
+    ifstream fin("password.in");
+    ofstream fout("res.out");
+
+    if(!fin) { cerr << "Khong mo duoc file password.in\n"; return 1; }
+
+    string s;
+    while(getline(fin, s))
+    {
+        if(!s.empty() && s.back()=='\r') s.pop_back(); // loại bỏ \r nếu có
+        if(check(s))
+            fout << "VALID\n";
+        else
+            fout << "INVALID\n";
+    }
+
+    fin.close();
+    fout.close();
+    return 0;
+}
