@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+string chuyendoi(string s)
+{
+    stack<int>st;
+    string res="";
+    int n=s.size();
+    int next=1;
+    for(int i=0;i<=n;i++)
+    {
+        st.push(next++);
+        if(i==n ||s[i]=='I')
+        {
+            while(!st.empty())
+            {
+                res+=to_string(st.top());
+                st.pop();
+            }
+        }
+    }
+    return res;
+}
+int main()
+{
+    int q;
+    cin >>q;
+    while(q--)
+    {
+        string s;
+        cin>>s;
+        cout<<chuyendoi(s)<<endl;
+    }
+}
