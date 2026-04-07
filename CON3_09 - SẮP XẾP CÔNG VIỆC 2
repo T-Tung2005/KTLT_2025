@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct job{
+   int id,dl,profit;
+};
+bool cmp(job a , job b)
+{
+    return a.dl>b.dl;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+    int n;
+    cin>>n;
+    job a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i].id>>a[i].dl>>a[i].profit;
+    }
+    sort(a,a+n,cmp);
+    priority_queue<int>pq;
+    int hientai = a[0].dl;
+    int index=0;
+    long long res=0;
+    int dem=0;
+    while(hientai>=1)
+    {
+        while(index<n && a[index].dl>=hientai)
+        {
+            pq.push(a[index].profit);
+            index++;
+        }
+        if(!pq.empty())
+        {
+            res+=pq.top();
+            pq.pop();
+            dem++;
+        }
+        hientai--;
+    }
+    cout<<dem<<" "<<res<<endl;
+    }
+}
