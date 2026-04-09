@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll= long long;
+int n,m;
+vector<int>ke[100001];
+int main() {
+   cin>>n;//nhập số đỉnh
+   cin.ignore();
+   for(int i=1;i<=n;i++)
+   {
+       string s;
+       getline(cin,s);
+       string tmp;
+       stringstream ss(s);
+       while(ss>>tmp)
+       {
+           if(stoi(tmp)>i)
+           {
+               cout<<i<<" "<<tmp;
+           }
+           cout<<endl;
+       }
+   }
+}
